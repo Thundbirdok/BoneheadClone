@@ -174,8 +174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0614161885ef1bd48812832fc14d75f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipSlot: {fileID: 5549264723811528962}
+  inventory: {fileID: 11400000, guid: c884a6e0432e579489466a604a4dc94d, type: 2}
+  setSlot: {fileID: 5549264723811528962}
   dropSlot: {fileID: 3975298393902292668}
+  iconsHandler: {fileID: 11400000, guid: 683810fa8d179a944bf0978036f4162e, type: 2}
   equipButton: {fileID: 3365647449640724480}
   dropButton: {fileID: 383085603427596573}
 --- !u!1001 &440286613504712316

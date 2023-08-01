@@ -32,6 +32,9 @@ namespace Main.Equipment.Ui
             equipmentName.text = equipment.Type.Name + '\n' + equipment.SubType.Name;
             
             parameters.text = GetParametersText(equipment);
+            
+            icon.gameObject.SetActive(true);
+            parameters.gameObject.SetActive(true);
         }
 
         private static string GetParametersText(Equipment equipment)

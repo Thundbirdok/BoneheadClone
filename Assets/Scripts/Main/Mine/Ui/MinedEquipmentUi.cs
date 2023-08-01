@@ -31,6 +31,8 @@ namespace Main.Mine.Ui
 
         private Equipment _set;
         private Equipment _drop;
+
+        private bool _isSwapped;
         
         private void OnEnable()
         {
@@ -46,14 +48,32 @@ namespace Main.Mine.Ui
 
         public void Show(Equipment equipment)
         {
-            inventory.TryGet(equipment.Type.Id, out var fromInventory);
-            iconsHandler.TryGetIcon(equipment.Type.Id, equipment.SubType.Id, out var setIcon);
-            setSlot.Set(fromInventory, setIcon);
+            SetInitialState();
 
-            iconsHandler.TryGetIcon(equipment.Type.Id, equipment.SubType.Id, out var dropIcon);
-            dropSlot.Set(equipment, dropIcon);
-            
+            SetSetSlot(equipment);
+            SetDropSlot(equipment);
+
             gameObject.SetActive(true);
+        }
+
+        private void SetSetSlot(Equipment equipment)
+        {
+            Sprite setIcon = null;
+
+            if (inventory.TryGet(equipment.Type.Id, out _set))
+            {
+                iconsHandler.TryGetIcon(_set.Type.Id, _set.SubType.Id, out setIcon);
+            }
+
+            setSlot.Set(_set, setIcon);
+        }
+
+        private void SetDropSlot(Equipment equipment)
+        {
+            _drop = equipment;
+
+            iconsHandler.TryGetIcon(_drop.Type.Id, _drop.SubType.Id, out var dropIcon);
+            dropSlot.Set(_drop, dropIcon);
         }
 
         public void Hide()
@@ -75,7 +95,25 @@ namespace Main.Mine.Ui
 
         private void Equip()
         {
-            
+            (_set, _drop) = (_drop, _set);
+
+            if (_isSwapped)
+            {
+                setSlot.transform.SetAsFirstSibling();
+            }
+            else
+            {
+                setSlot.transform.SetAsLastSibling();
+            }
+
+            _isSwapped = !_isSwapped;
+        }
+
+        private void SetInitialState()
+        {
+            _isSwapped = false;
+            setSlot.transform.SetAsFirstSibling();
+            setSlot.transform.SetAsFirstSibling();
         }
     }
 }

@@ -12,6 +12,9 @@ namespace Main.Inventory.Ui
         [SerializeField]
         private InventorySlotUi[] slots;
 
+        [SerializeField]
+        private EquipmentIconsHandler iconsHandler;
+        
         private void OnEnable()
         {
             inventory.OnAddEquipment += AddToSlot;
@@ -31,7 +34,9 @@ namespace Main.Inventory.Ui
                 return;
             }
             
-            slot.Set(equipment);
+            iconsHandler.TryGetIcon(equipment.Type.Id, equipment.SubType.Id, out var iconSprite);
+            
+            slot.Set(equipment, iconSprite);
         }
     }
 }
