@@ -1,6 +1,7 @@
 namespace Interactable
 {
     using UnityEngine;
+    using UnityEngine.EventSystems;
 
     public class InteractionClickService : MonoBehaviour
     {
@@ -12,6 +13,11 @@ namespace Interactable
         private void Check2DObjectClicked()
         {
             if (Input.GetMouseButtonDown(0) == false)
+            {
+                return;
+            }
+
+            if (EventSystem.current.IsPointerOverGameObject())
             {
                 return;
             }
