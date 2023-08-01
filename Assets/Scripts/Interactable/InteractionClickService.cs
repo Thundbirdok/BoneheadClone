@@ -1,7 +1,7 @@
-namespace Main.Mine
+namespace Interactable
 {
     using UnityEngine;
-    
+
     public class InteractionClickService : MonoBehaviour
     {
         [SerializeField]

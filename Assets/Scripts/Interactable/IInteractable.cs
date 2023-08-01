@@ -1,4 +1,4 @@
-namespace Main.Mine
+namespace Interactable
 {
     public interface IInteractable
     {
