@@ -22,7 +22,7 @@ namespace Main.Mine.Ui
         [SerializeField]
         private Button dropButton;
 
-        private Equipment _equip;
+        private Equipment _set;
         private Equipment _drop;
         
         private void OnEnable()
@@ -59,7 +59,7 @@ namespace Main.Mine.Ui
         {
             Hide();
             
-            OnDrop?.Invoke(_equip, _drop);
+            OnDrop?.Invoke(_set, _drop);
         }
 
         private void Equip()

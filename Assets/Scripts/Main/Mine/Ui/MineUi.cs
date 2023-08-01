@@ -1,6 +1,7 @@
 namespace Main.Mine.Ui
 {
     using Main.Equipment;
+    using Main.Inventory;
     using UnityEngine;
     
     public class MineUi : MonoBehaviour
@@ -8,6 +9,12 @@ namespace Main.Mine.Ui
         [SerializeField]
         private MineEventHandler mineEventHandler;
 
+        // [SerializeField]
+        // private CoinsView coinsView;
+
+        [SerializeField]
+        private Inventory inventory;
+        
         [SerializeField]
         private MinedEquipmentUi minedEquipmentUi;
         
@@ -32,7 +39,7 @@ namespace Main.Mine.Ui
 
         private void SetAndDropEquipment(Equipment set, Equipment drop)
         {
-            
+            inventory.Add(set);
         }
     }
 }
