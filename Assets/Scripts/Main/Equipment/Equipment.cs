@@ -8,23 +8,25 @@ namespace Main.Equipment
     public class Equipment
     {
         [field: SerializeField]
-        public string Id { get; private set; }
-        
-        [field: SerializeField]
-        public string TypeId { get; private set; }
+        public Type Type { get; private set; }
 
         [field: SerializeField]
-        public string Name { get; private set; }
+        public SubType SubType { get; private set; }
 
-        [field: SerializeField]
-        public IReadOnlyList<EquipmentParameter> Parameters { get; private set; }
+        [SerializeField]
+        private EquipmentParameter[] parameters; 
+        public IReadOnlyList<EquipmentParameter> Parameters => parameters;
 
-        public Equipment(string id, string typeId, string name, EquipmentParameter[] parameters)
+        public Equipment
+        (
+            Type type,
+            SubType subType,
+            EquipmentParameter[] equipmentParameters
+        )
         {
-            Id = id;
-            TypeId = typeId;
-            Name = name;
-            Parameters = parameters;
+            Type = type;
+            SubType = subType;
+            parameters = equipmentParameters;
         }
     }
     
@@ -32,27 +34,44 @@ namespace Main.Equipment
     public class EquipmentEditor
     {
         [field: SerializeField]
-        public string Id { get; private set; }
-        
-        [field: SerializeField]
-        public string TypeId { get; private set; }
+        public Type Type { get; private set; }
 
         [field: SerializeField]
-        public string Name { get; private set; }
+        public SubType[] SubTypes { get; private set; }
 
         [field: SerializeField]
         public EquipmentParameterEditor[] Parameters { get; private set; }
+    }
 
-        public Equipment GetEquipment()
+    [Serializable]
+    public class Type
+    {
+        [field: SerializeField]
+        public string Id { get; private set; }
+        
+        [field: SerializeField]
+        public string Name { get; private set; }
+
+        public Type(string id, string name)
         {
-            var parameters = new EquipmentParameter[Parameters.Length];
+            Id = id;
+            Name = name;
+        }
+    }
+    
+    [Serializable]
+    public class SubType
+    {
+        [field: SerializeField]
+        public string Id { get; private set; }
+        
+        [field: SerializeField]
+        public string Name { get; private set; }
 
-            for (var i = 0; i < Parameters.Length; i++)
-            {
-                parameters[i] = Parameters[i].GetEquipmentParameter();
-            }
-
-            return new Equipment(Id, TypeId, Name, parameters);
+        public SubType(string id, string name)
+        {
+            Id = id;
+            Name = name;
         }
     }
 }

@@ -5,13 +5,18 @@ namespace Main.Equipment
     using UnityEngine;
     
     [CreateAssetMenu(fileName = "EquipmentTypesHandler", menuName = "Equipment/EquipmentTypesHandler")]
-    public class EquipmentTypesHandler : ScriptableObject, IEnumerable
+    public class EquipmentTypesHandler : ScriptableObject, IEnumerable<EquipmentEditor>
     {
         public int Count => equipments.Count;
         
         [SerializeField]
         private List<EquipmentEditor> equipments;
-        
+
+        IEnumerator<EquipmentEditor> IEnumerable<EquipmentEditor>.GetEnumerator()
+        {
+            return equipments.GetEnumerator();
+        }
+
         public IEnumerator GetEnumerator()
         {
             return equipments.GetEnumerator();

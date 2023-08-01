@@ -3,19 +3,26 @@ namespace Main.Mine.Ui
     using System;
     using Main.Equipment;
     using Main.Equipment.Ui;
+    using Main.Inventory;
     using UnityEngine;
     using UnityEngine.UI;
 
     public class MinedEquipmentUi : MonoBehaviour
     {
         public event Action<Equipment, Equipment> OnDrop;
+
+        [SerializeField]
+        private Inventory inventory;
         
         [SerializeField]
-        private EquipmentWideSlotUi equipSlot;
+        private EquipmentWideSlotUi setSlot;
 
         [SerializeField]
         private EquipmentWideSlotUi dropSlot;
 
+        [SerializeField]
+        private EquipmentIconsHandler iconsHandler;
+        
         [SerializeField]
         private Button equipButton;
         
@@ -39,8 +46,12 @@ namespace Main.Mine.Ui
 
         public void Show(Equipment equipment)
         {
-            equipSlot.Set(null/*fromInventory*/);
-            dropSlot.Set(equipment);
+            inventory.TryGet(equipment.Type.Id, out var fromInventory);
+            iconsHandler.TryGetIcon(equipment.Type.Id, equipment.SubType.Id, out var setIcon);
+            setSlot.Set(fromInventory, setIcon);
+
+            iconsHandler.TryGetIcon(equipment.Type.Id, equipment.SubType.Id, out var dropIcon);
+            dropSlot.Set(equipment, dropIcon);
             
             gameObject.SetActive(true);
         }

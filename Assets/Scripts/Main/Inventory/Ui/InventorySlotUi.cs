@@ -11,7 +11,7 @@ namespace Main.Inventory.Ui
         private Image icon;
 
         [SerializeField]
-        private string id;
+        private string typeId;
         
         public void Set(Equipment equipment)
         {
@@ -23,7 +23,7 @@ namespace Main.Inventory.Ui
 
         public bool IsSameId(Equipment equipment)
         {
-            return equipment.Id.Equals(id, StringComparison.InvariantCulture);
+            return equipment.Type.Id.Equals(typeId, StringComparison.InvariantCulture);
         }
     }
 }

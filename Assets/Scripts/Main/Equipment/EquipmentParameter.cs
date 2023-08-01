@@ -13,12 +13,13 @@ namespace Main.Equipment
         public string Name { get; private set; }
         
         [field: SerializeField]
-        public int Value { get; set; }
+        public int Value { get; private set; }
 
-        public EquipmentParameter(string id, string name)
+        public EquipmentParameter(string id, string name, int value)
         {
             Id = id;
             Name = name;
+            Value = value;
         }
     }
     
@@ -36,10 +37,5 @@ namespace Main.Equipment
         
         [field: SerializeField]
         public int MaxValueInclusive { get; private set; }
-
-        public EquipmentParameter GetEquipmentParameter()
-        {
-            return new EquipmentParameter(Id, Name);
-        }
     }
 }

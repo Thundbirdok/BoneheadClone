@@ -420,6 +420,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3660382304091567070, guid: 914e6437cf8ff59459e3c381ac4920b7, type: 3}
+      propertyPath: setSlot
+      value: 
+      objectReference: {fileID: 5846688921057585459}
+    - target: {fileID: 3660382304091567070, guid: 914e6437cf8ff59459e3c381ac4920b7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 11400000, guid: c884a6e0432e579489466a604a4dc94d, type: 2}
+    - target: {fileID: 3660382304091567070, guid: 914e6437cf8ff59459e3c381ac4920b7, type: 3}
+      propertyPath: iconsHandler
+      value: 
+      objectReference: {fileID: 11400000, guid: 683810fa8d179a944bf0978036f4162e, type: 2}
     - target: {fileID: 4595819541788972319, guid: 914e6437cf8ff59459e3c381ac4920b7, type: 3}
       propertyPath: m_Name
       value: Mine
@@ -653,6 +665,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 914e6437cf8ff59459e3c381ac4920b7, type: 3}
+--- !u!114 &5846688921057585459 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2942531021989376406, guid: 914e6437cf8ff59459e3c381ac4920b7, type: 3}
+  m_PrefabInstance: {fileID: 5846688921057585458}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149bc2007279faf4392cfd82f4deb035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6936035650379156314
 PrefabInstance:
   m_ObjectHideFlags: 0

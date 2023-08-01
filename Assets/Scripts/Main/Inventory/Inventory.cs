@@ -20,23 +20,28 @@ namespace Main.Inventory
                 return;
             }
 
-            var isContains = _equipments.ContainsKey(equipment.Id);
+            var isContains = _equipments.ContainsKey(equipment.Type.Id);
 
             AddToDictionary(equipment, isContains);
             
             OnAddEquipment?.Invoke(equipment);
         }
 
+        public bool TryGet(string typeId, out Equipment equipment)
+        {
+            return _equipments.TryGetValue(typeId, out equipment);
+        }
+        
         private void AddToDictionary(Equipment equipment, bool isContains)
         {
             if (isContains)
             {
-                _equipments[equipment.Id] = equipment;
+                _equipments[equipment.Type.Id] = equipment;
                 
                 return;
             }
 
-            _equipments.Add(equipment.Id, equipment);
+            _equipments.Add(equipment.Type.Id, equipment);
         }
     }
 }

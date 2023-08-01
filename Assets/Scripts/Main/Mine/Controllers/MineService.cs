@@ -1,7 +1,6 @@
 namespace Main.Mine.Controllers
 {
     using System;
-    using System.Linq;
     using Main.Equipment;
     using UnityEngine;
 
@@ -38,12 +37,11 @@ namespace Main.Mine.Controllers
             var equipmentIndex = RollEquipment();
 
             var equipmentEditor = equipmentTypesHandler[equipmentIndex];
-            var equipment = equipmentTypesHandler[equipmentIndex].GetEquipment();
-            
-            _previousMinedTypeId = equipment.TypeId;
+
+            _previousMinedTypeId = equipmentEditor.Type.Id;
             _previousMinedCount++;
 
-            RollStats(equipment, equipmentEditor);
+            var equipment = GetEquipment(equipmentEditor);
             
             mineEventHandler.InvokeMined(equipment);
         }
@@ -71,7 +69,7 @@ namespace Main.Mine.Controllers
         {
             var equipment = equipmentTypesHandler[equipmentIndex];
 
-            var equipmentTypeId = equipment.TypeId;
+            var equipmentTypeId = equipment.Type.Id;
 
             var isSameAsPrevious = string.Equals
             (
@@ -88,24 +86,54 @@ namespace Main.Mine.Controllers
             return _previousMinedCount >= 3;
         }
 
-        private static void RollStats(Equipment equipment, EquipmentEditor equipmentEditor)
+        private static Equipment GetEquipment(EquipmentEditor equipmentEditor)
         {
-            foreach (var parameter in equipment.Parameters)
+            var parameters = GetEquipmentParameters(equipmentEditor);
+
+            var subType = GetSubTypeId(equipmentEditor);
+
+            return new Equipment
+            (
+                equipmentEditor.Type,
+                subType,
+                parameters
+            );
+        }
+
+        private static SubType GetSubTypeId(EquipmentEditor equipmentEditor)
+        {
+            var subTypeIdIndex = UnityEngine.Random.Range
+            (
+                0,
+                equipmentEditor.SubTypes.Length
+            );
+
+            var subType = equipmentEditor.SubTypes[subTypeIdIndex];
+
+            return subType;
+        }
+
+        private static EquipmentParameter[] GetEquipmentParameters(EquipmentEditor equipmentEditor)
+        {
+            var parameters = new EquipmentParameter[equipmentEditor.Parameters.Length];
+
+            for (var i = 0; i < equipmentEditor.Parameters.Length; i++)
             {
-                var parameterEditor = equipmentEditor.Parameters
-                    .FirstOrDefault(x => x.Id == parameter.Id);
+                var parameterEditor = equipmentEditor.Parameters[i];
 
-                if (parameterEditor == null)
-                {
-                    continue; 
-                }
-
-                parameter.Value = UnityEngine.Random.Range
+                var parameterValue = UnityEngine.Random.Range
                 (
                     parameterEditor.MinValueInclusive,
                     parameterEditor.MaxValueInclusive + 1
                 );
+
+                var parameter = new EquipmentParameter
+                    (parameterEditor.Id, parameterEditor.Name, parameterValue);
+
+                parameters[i] = parameter;
             }
+
+            return parameters;
         }
     }
 }

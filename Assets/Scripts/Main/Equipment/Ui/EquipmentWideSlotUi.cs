@@ -16,7 +16,7 @@ namespace Main.Equipment.Ui
         [SerializeField]
         private TextMeshProUGUI parameters;
 
-        public void Set(Equipment equipment)
+        public void Set(Equipment equipment, Sprite iconSprite)
         {
             if (equipment == null)
             {
@@ -27,7 +27,9 @@ namespace Main.Equipment.Ui
                 return;
             }
             
-            equipmentName.text = equipment.Name;
+            icon.sprite = iconSprite;
+            
+            equipmentName.text = equipment.Type.Name + '\n' + equipment.SubType.Name;
             
             parameters.text = GetParametersText(equipment);
         }

@@ -13,25 +13,46 @@ MonoBehaviour:
   m_Name: EquipmentTypesHandler
   m_EditorClassIdentifier: 
   equipments:
-  - <Id>k__BackingField: Weapon
-    <TypeId>k__BackingField: Weapon
-    <Name>k__BackingField: Weapon
+  - <Type>k__BackingField:
+      <Id>k__BackingField: Weapon
+      <Name>k__BackingField: Weapon
+    <SubTypes>k__BackingField:
+    - <Id>k__BackingField: Spear
+      <Name>k__BackingField: Spear
+    - <Id>k__BackingField: Axe
+      <Name>k__BackingField: Axe
+    - <Id>k__BackingField: Spear
+      <Name>k__BackingField: Spear
     <Parameters>k__BackingField:
     - <Id>k__BackingField: Attack
       <Name>k__BackingField: Attack
       <MinValueInclusive>k__BackingField: 1
       <MaxValueInclusive>k__BackingField: 15
-  - <Id>k__BackingField: Shield
-    <TypeId>k__BackingField: Shield
-    <Name>k__BackingField: Shield
+  - <Type>k__BackingField:
+      <Id>k__BackingField: Shield
+      <Name>k__BackingField: Shield
+    <SubTypes>k__BackingField:
+    - <Id>k__BackingField: Tower
+      <Name>k__BackingField: Tower
+    - <Id>k__BackingField: Buckler
+      <Name>k__BackingField: Buckler
+    - <Id>k__BackingField: Gladiator
+      <Name>k__BackingField: Gladiator
     <Parameters>k__BackingField:
     - <Id>k__BackingField: Defence
       <Name>k__BackingField: Defence
       <MinValueInclusive>k__BackingField: 1
       <MaxValueInclusive>k__BackingField: 15
-  - <Id>k__BackingField: Helmet
-    <TypeId>k__BackingField: Helmet
-    <Name>k__BackingField: Helmet
+  - <Type>k__BackingField:
+      <Id>k__BackingField: Helmet
+      <Name>k__BackingField: Helmet
+    <SubTypes>k__BackingField:
+    - <Id>k__BackingField: Scout
+      <Name>k__BackingField: Scout
+    - <Id>k__BackingField: Knight
+      <Name>k__BackingField: Knight
+    - <Id>k__BackingField: Hawk
+      <Name>k__BackingField: Hawk
     <Parameters>k__BackingField:
     - <Id>k__BackingField: HP
       <Name>k__BackingField: HP
