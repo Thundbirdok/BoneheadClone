@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 515e631bd09708c40b461833aa1e95f0, type: 3}
+  m_Name: EquipmentTypesHandler
+  m_EditorClassIdentifier: 
+  equipments:
+  - <Id>k__BackingField: Weapon
+    <TypeId>k__BackingField: Weapon
+    <Name>k__BackingField: Weapon
+    <Parameters>k__BackingField:
+    - <Id>k__BackingField: Attack
+      <Name>k__BackingField: Attack
+      <MinValueInclusive>k__BackingField: 1
+      <MaxValueInclusive>k__BackingField: 15
+  - <Id>k__BackingField: Shield
+    <TypeId>k__BackingField: Shield
+    <Name>k__BackingField: Shield
+    <Parameters>k__BackingField:
+    - <Id>k__BackingField: Defence
+      <Name>k__BackingField: Defence
+      <MinValueInclusive>k__BackingField: 1
+      <MaxValueInclusive>k__BackingField: 15
+  - <Id>k__BackingField: Helmet
+    <TypeId>k__BackingField: Helmet
+    <Name>k__BackingField: Helmet
+    <Parameters>k__BackingField:
+    - <Id>k__BackingField: HP
+      <Name>k__BackingField: HP
+      <MinValueInclusive>k__BackingField: 1
+      <MaxValueInclusive>k__BackingField: 15

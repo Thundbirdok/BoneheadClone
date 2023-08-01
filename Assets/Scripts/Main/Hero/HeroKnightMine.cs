@@ -2,6 +2,7 @@ namespace Main.Hero
 {
     using System;
     using System.Threading.Tasks;
+    using Interactable;
     using Main.Mine;
     using UnityEngine;
     using Random = UnityEngine.Random;
@@ -14,7 +15,8 @@ namespace Main.Hero
         private Animator animator;
         
         private const float BLOCK_DURATION = 0.15f;
-
+        private const float ROLL_DURATION = 0.5714f;
+            
         private float _time;
         
         private static readonly int BlockHash = Animator.StringToHash("Block");
@@ -37,10 +39,19 @@ namespace Main.Hero
 
         public void Interact() => Mine();
         
-        private void Mine()
+        private async void Mine()
         {
             Roll();
+
+            _time = 0;
             
+            while (_time < ROLL_DURATION)
+            {
+                await Task.Yield();
+                
+                _time += Time.deltaTime;
+            }
+
             OnMine?.Invoke();
         }
 
