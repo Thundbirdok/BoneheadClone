@@ -32,3 +32,5 @@
 Ассеты:
 https://assetstore.unity.com/packages/2d/textures-materials/nature/free-pixel-art-forest-133112
 https://assetstore.unity.com/packages/2d/characters/hero-knight-pixel-art-165188
+https://assetstore.unity.com/packages/2d/gui/icons/simple-ui-icons-147101
+https://assetstore.unity.com/packages/tools/gui/ultimate-safe-area-235121
