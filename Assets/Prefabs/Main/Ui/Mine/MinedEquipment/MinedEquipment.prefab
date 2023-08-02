@@ -192,6 +192,8 @@ MonoBehaviour:
   popupWindow: {fileID: 5654759883557346307}
   setSlot: {fileID: 5549264723811528962}
   dropSlot: {fileID: 3975298393902292668}
+  setSlotPosition: {fileID: 6965567750513415692}
+  dropSlotPosition: {fileID: 7630425318912482466}
   iconsHandler: {fileID: 11400000, guid: 683810fa8d179a944bf0978036f4162e, type: 2}
   equipButton: {fileID: 3365647449640724480}
   dropButton: {fileID: 383085603427596573}
@@ -208,29 +210,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2263807735914661251}
     m_Modifications:
+    - target: {fileID: 497614863547869169, guid: cbe253e7ff36a3a47a0e0e8e5bc60890, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3489437953223430052, guid: cbe253e7ff36a3a47a0e0e8e5bc60890, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3489437953223430052, guid: cbe253e7ff36a3a47a0e0e8e5bc60890, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3489437953223430052, guid: cbe253e7ff36a3a47a0e0e8e5bc60890, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 850
       objectReference: {fileID: 0}
     - target: {fileID: 3489437953223430052, guid: cbe253e7ff36a3a47a0e0e8e5bc60890, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 3489437953223430052, guid: cbe253e7ff36a3a47a0e0e8e5bc60890, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 425
       objectReference: {fileID: 0}
     - target: {fileID: 3489437953223430052, guid: cbe253e7ff36a3a47a0e0e8e5bc60890, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -275
       objectReference: {fileID: 0}
     - target: {fileID: 5216725762171617919, guid: cbe253e7ff36a3a47a0e0e8e5bc60890, type: 3}
       propertyPath: m_Pivot.x
@@ -314,23 +320,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5351705009811120154, guid: cbe253e7ff36a3a47a0e0e8e5bc60890, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5351705009811120154, guid: cbe253e7ff36a3a47a0e0e8e5bc60890, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5351705009811120154, guid: cbe253e7ff36a3a47a0e0e8e5bc60890, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 850
       objectReference: {fileID: 0}
     - target: {fileID: 5351705009811120154, guid: cbe253e7ff36a3a47a0e0e8e5bc60890, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 5351705009811120154, guid: cbe253e7ff36a3a47a0e0e8e5bc60890, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 425
       objectReference: {fileID: 0}
     - target: {fileID: 7665964198534470825, guid: cbe253e7ff36a3a47a0e0e8e5bc60890, type: 3}
       propertyPath: m_Name
@@ -399,6 +405,16 @@ MonoBehaviour:
 --- !u!224 &5654759883557346307 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5216725762171617919, guid: cbe253e7ff36a3a47a0e0e8e5bc60890, type: 3}
+  m_PrefabInstance: {fileID: 440286613504712316}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &6965567750513415692 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7401275254427486320, guid: cbe253e7ff36a3a47a0e0e8e5bc60890, type: 3}
+  m_PrefabInstance: {fileID: 440286613504712316}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &7630425318912482466 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8068340783236907742, guid: cbe253e7ff36a3a47a0e0e8e5bc60890, type: 3}
   m_PrefabInstance: {fileID: 440286613504712316}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &8667491289364968413 stripped

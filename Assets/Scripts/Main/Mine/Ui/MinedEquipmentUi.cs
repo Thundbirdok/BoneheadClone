@@ -24,11 +24,23 @@ namespace Main.Mine.Ui
         private RectTransform popupWindow;
         
         [SerializeField]
+        private float showPopupDuration = 0.25f;
+        
+        [SerializeField]
         private EquipmentWideSlotUi setSlot;
 
         [SerializeField]
         private EquipmentWideSlotUi dropSlot;
 
+        [SerializeField]
+        private RectTransform setSlotPosition; 
+        
+        [SerializeField]
+        private RectTransform dropSlotPosition;
+        
+        [SerializeField]
+        private float swapDuration = 0.25f;
+        
         [SerializeField]
         private EquipmentIconsHandler iconsHandler;
         
@@ -56,7 +68,11 @@ namespace Main.Mine.Ui
         private Equipment _set;
         private Equipment _drop;
 
+        private bool _isInitialized;
         private bool _isSwapped;
+
+        private Vector3 _setSlotPosition;
+        private Vector3 _dropSlotPosition;
         
         private void OnEnable()
         {
@@ -72,6 +88,8 @@ namespace Main.Mine.Ui
 
         public void Show(Equipment equipment)
         {
+            Initialize();
+
             SetInitialState();
 
             SetSetSlot(equipment);
@@ -84,10 +102,28 @@ namespace Main.Mine.Ui
             var sequence = DOTween.Sequence();
 
             sequence
-                .Append(background.DOFade(1, 0.25f))
-                .Join(popupWindow.DOScale(1, 0.25f));
+                .Append(background.DOFade(1, showPopupDuration))
+                .Join(popupWindow.DOScale(1, showPopupDuration));
 
             sequence.Play();
+        }
+
+        public void Disable()
+        {
+            gameObject.SetActive(false);
+        }
+
+        private void Initialize()
+        {
+            if (_isInitialized)
+            {
+                return;
+            }
+
+            _isInitialized = true;
+
+            _setSlotPosition = setSlotPosition.localPosition;
+            _dropSlotPosition = dropSlotPosition.localPosition;
         }
 
         private void SetSetSlot(Equipment equipment)
@@ -110,24 +146,19 @@ namespace Main.Mine.Ui
             dropSlot.Set(_drop, dropIcon);
         }
 
-        public async void Hide()
+        private async void Hide()
         {
             var sequence = DOTween.Sequence();
 
             sequence
-                .Append(background.DOFade(0, 0.25f))
-                .Join(popupWindow.DOScale(Vector3.zero, 0.25f));
+                .Append(background.DOFade(0, showPopupDuration))
+                .Join(popupWindow.DOScale(Vector3.zero, showPopupDuration));
 
             await sequence.Play().AsyncWaitForCompletion();
             
             Disable();
         }
 
-        public void Disable()
-        {
-            gameObject.SetActive(false);
-        }
-        
         private void Drop()
         {
             Hide();
@@ -140,24 +171,33 @@ namespace Main.Mine.Ui
             (_set, _drop) = (_drop, _set);
 
             SetParametersDelta();
-            
-            if (_isSwapped)
+
+            var setTargetPosition = _setSlotPosition;
+            var dropTargetPosition = _dropSlotPosition;
+
+            if (_isSwapped == false)
             {
-                setSlot.transform.SetAsFirstSibling();
-            }
-            else
-            {
-                setSlot.transform.SetAsLastSibling();
+                setTargetPosition = _dropSlotPosition;
+                dropTargetPosition = _setSlotPosition;
             }
 
+            var sequence = DOTween.Sequence();
+
+            sequence
+                .Append(dropSlot.transform.DOLocalMove(dropTargetPosition, swapDuration))
+                .Join(setSlot.transform.DOLocalMove(setTargetPosition, swapDuration));
+
+            sequence.Play();
+            
             _isSwapped = !_isSwapped;
         }
 
         private void SetInitialState()
         {
             _isSwapped = false;
-            setSlot.transform.SetAsFirstSibling();
-            setSlot.transform.SetAsFirstSibling();
+
+            setSlot.transform.localPosition = _setSlotPosition;
+            dropSlot.transform.localPosition = _dropSlotPosition;
 
             background.alpha = 0;
             popupWindow.localScale = Vector3.zero;
