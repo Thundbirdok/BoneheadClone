@@ -1,9 +1,11 @@
 namespace Main.Mine.Ui
 {
     using System;
+    using System.Linq;
     using Main.Equipment;
     using Main.Equipment.Ui;
     using Main.Inventory;
+    using TMPro;
     using UnityEngine;
     using UnityEngine.UI;
 
@@ -29,6 +31,21 @@ namespace Main.Mine.Ui
         [SerializeField]
         private Button dropButton;
 
+        [SerializeField]
+        private Image arrow;
+
+        [SerializeField]
+        private Color positiveArrowColor = Color.green;
+        
+        [SerializeField]
+        private Color neutralArrowColor = Color.white;
+        
+        [SerializeField]
+        private Color negativeArrowColor = Color.red;
+        
+        [SerializeField]
+        private TextMeshProUGUI parametersDeltaText;
+        
         private Equipment _set;
         private Equipment _drop;
 
@@ -53,6 +70,8 @@ namespace Main.Mine.Ui
             SetSetSlot(equipment);
             SetDropSlot(equipment);
 
+            SetParametersDelta();
+            
             gameObject.SetActive(true);
         }
 
@@ -97,6 +116,8 @@ namespace Main.Mine.Ui
         {
             (_set, _drop) = (_drop, _set);
 
+            SetParametersDelta();
+            
             if (_isSwapped)
             {
                 setSlot.transform.SetAsFirstSibling();
@@ -114,6 +135,43 @@ namespace Main.Mine.Ui
             _isSwapped = false;
             setSlot.transform.SetAsFirstSibling();
             setSlot.transform.SetAsFirstSibling();
+        }
+
+        private void SetParametersDelta()
+        {
+            var dropValue =  _drop == null ? 0 : _drop.Parameters.Sum(parameter => parameter.Value);
+            var setValue = _set == null ? 0 : _set.Parameters.Sum(parameter => parameter.Value);
+
+            var parametersDelta = dropValue - setValue;
+
+            var parametersDeltaTextValue = Mathf.Abs(parametersDelta).ToString();
+
+            switch (parametersDelta)
+            {
+                case > 0:
+                    parametersDeltaTextValue = "+" + parametersDeltaTextValue;
+
+                    arrow.transform.rotation = Quaternion.identity;
+                    arrow.color = positiveArrowColor;
+
+                    break;
+
+                case < 0:
+                    parametersDeltaTextValue = "-" + parametersDeltaTextValue;
+                
+                    arrow.transform.rotation = Quaternion.Euler(0, 0, 180);
+                    arrow.color = negativeArrowColor;
+
+                    break;
+
+                default:
+                    arrow.transform.rotation = Quaternion.Euler(0, 0, -90);
+                    arrow.color = neutralArrowColor;
+
+                    break;
+            }
+            
+            parametersDeltaText.text = parametersDeltaTextValue;
         }
     }
 }

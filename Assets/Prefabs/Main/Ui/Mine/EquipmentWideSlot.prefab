@@ -188,9 +188,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 950
+  m_MinWidth: 750
   m_MinHeight: 225
-  m_PreferredWidth: 950
+  m_PreferredWidth: 750
   m_PreferredHeight: 225
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
