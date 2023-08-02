@@ -1,5 +1,6 @@
 namespace Main.Mine.Ui
 {
+    using System.Linq;
     using Main.Equipment;
     using Main.Inventory;
     using UnityEngine;
@@ -13,6 +14,9 @@ namespace Main.Mine.Ui
         // private CoinsView coinsView;
 
         [SerializeField]
+        private DroppedCoinsAnimator droppedCoinsAnimator;
+        
+        [SerializeField]
         private Inventory inventory;
         
         [SerializeField]
@@ -23,6 +27,8 @@ namespace Main.Mine.Ui
             mineEventHandler.OnMined += ShowMinedEquipment;
             minedEquipmentUi.OnDrop += SetAndDropEquipment;
 
+            droppedCoinsAnimator.Initialize();
+            
             minedEquipmentUi.Disable();
         }
 
@@ -40,6 +46,15 @@ namespace Main.Mine.Ui
         private void SetAndDropEquipment(Equipment set, Equipment drop)
         {
             inventory.Add(set);
+
+            if (drop == null)
+            {
+                return;
+            }
+            
+            var value = drop.Parameters.Sum(parameter => parameter.Value);
+
+            droppedCoinsAnimator.Drop(value);
         }
     }
 }
