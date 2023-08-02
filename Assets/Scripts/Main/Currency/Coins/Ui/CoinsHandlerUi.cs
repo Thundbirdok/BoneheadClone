@@ -1,4 +1,4 @@
-namespace Main.Currency.Coins
+namespace Main.Currency.Coins.Ui
 {
     using TMPro;
     using UnityEngine;

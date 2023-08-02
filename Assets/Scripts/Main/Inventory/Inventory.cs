@@ -1,12 +1,13 @@
 namespace Main.Inventory
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using Main.Equipment;
     using UnityEngine;
     
     [CreateAssetMenu(fileName = "Inventory", menuName = "Inventory/Inventory")]
-    public class Inventory : ScriptableObject
+    public class Inventory : ScriptableObject, IEnumerable<Equipment>
     {
         public event Action<Equipment> OnAddEquipment;
         
@@ -42,6 +43,16 @@ namespace Main.Inventory
             }
 
             _equipments.Add(equipment.Type.Id, equipment);
+        }
+
+        public IEnumerator<Equipment> GetEnumerator()
+        {
+            return _equipments.Values.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

@@ -2,7 +2,7 @@ namespace Main.Hero
 {
     using System;
     using System.Threading.Tasks;
-    using Interactable;
+    using Common.Interactable;
     using Main.Mine;
     using UnityEngine;
     using Random = UnityEngine.Random;

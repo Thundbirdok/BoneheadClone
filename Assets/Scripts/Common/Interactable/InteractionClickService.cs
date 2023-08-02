@@ -1,4 +1,4 @@
-namespace Interactable
+namespace Common.Interactable
 {
     using UnityEngine;
     using UnityEngine.EventSystems;

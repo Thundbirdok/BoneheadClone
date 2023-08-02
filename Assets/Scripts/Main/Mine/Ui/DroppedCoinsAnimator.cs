@@ -5,6 +5,7 @@ namespace Main.Mine.Ui
     using System.Threading.Tasks;
     using DG.Tweening;
     using Main.Currency.Coins;
+    using Main.Currency.Coins.Ui;
     using UnityEngine;
     using UnityEngine.Pool;
     using Object = UnityEngine.Object;
