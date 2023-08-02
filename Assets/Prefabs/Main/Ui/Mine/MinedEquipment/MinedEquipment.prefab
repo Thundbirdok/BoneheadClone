@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5269375759111213253}
   - component: {fileID: 9154413672734693292}
   - component: {fileID: 6812587048106140271}
+  - component: {fileID: 7940297414752202340}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -75,6 +76,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &7940297414752202340
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8053983193822362991}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8599467529871779492
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,6 +188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: c884a6e0432e579489466a604a4dc94d, type: 2}
+  background: {fileID: 7940297414752202340}
+  popupWindow: {fileID: 5654759883557346307}
   setSlot: {fileID: 5549264723811528962}
   dropSlot: {fileID: 3975298393902292668}
   iconsHandler: {fileID: 11400000, guid: 683810fa8d179a944bf0978036f4162e, type: 2}

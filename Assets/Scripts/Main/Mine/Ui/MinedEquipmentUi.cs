@@ -2,6 +2,7 @@ namespace Main.Mine.Ui
 {
     using System;
     using System.Linq;
+    using DG.Tweening;
     using Main.Equipment;
     using Main.Equipment.Ui;
     using Main.Inventory;
@@ -15,6 +16,12 @@ namespace Main.Mine.Ui
 
         [SerializeField]
         private Inventory inventory;
+
+        [SerializeField]
+        private CanvasGroup background;
+
+        [SerializeField]
+        private RectTransform popupWindow;
         
         [SerializeField]
         private EquipmentWideSlotUi setSlot;
@@ -73,6 +80,14 @@ namespace Main.Mine.Ui
             SetParametersDelta();
             
             gameObject.SetActive(true);
+
+            var sequence = DOTween.Sequence();
+
+            sequence
+                .Append(background.DOFade(1, 0.25f))
+                .Join(popupWindow.DOScale(1, 0.25f));
+
+            sequence.Play();
         }
 
         private void SetSetSlot(Equipment equipment)
@@ -95,8 +110,16 @@ namespace Main.Mine.Ui
             dropSlot.Set(_drop, dropIcon);
         }
 
-        public void Hide()
+        public async void Hide()
         {
+            var sequence = DOTween.Sequence();
+
+            sequence
+                .Append(background.DOFade(0, 0.25f))
+                .Join(popupWindow.DOScale(Vector3.zero, 0.25f));
+
+            await sequence.Play().AsyncWaitForCompletion();
+            
             Disable();
         }
 
@@ -135,6 +158,9 @@ namespace Main.Mine.Ui
             _isSwapped = false;
             setSlot.transform.SetAsFirstSibling();
             setSlot.transform.SetAsFirstSibling();
+
+            background.alpha = 0;
+            popupWindow.localScale = Vector3.zero;
         }
 
         private void SetParametersDelta()
