@@ -17,11 +17,26 @@ namespace Common.Interactable
                 return;
             }
 
-            if (EventSystem.current.IsPointerOverGameObject())
+            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
             {
-                return;
+                foreach (var touch in Input.touches)
+                {
+                    var id = touch.fingerId;
+                
+                    if (EventSystem.current.IsPointerOverGameObject(id))
+                    {
+                        return;
+                    }
+                }
             }
-            
+            else
+            {
+                if (EventSystem.current.IsPointerOverGameObject())
+                {
+                    return;
+                }
+            }
+
             GetRayOriginAndDirection(out var origin, out var direction);
 
             var hit = Physics2D.Raycast(origin, direction);
